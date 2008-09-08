@@ -19,7 +19,7 @@ function do_entrycontent( $when, $day )
 
     $inlist = false;
 
-    $entrylines = array( "<!-- start of entry $when/$day -->\n" );
+    $entrylines = array( "" );
 
     $file = file( "$when/$day" );
     // if ( match_entrytitle( $file[0] ) ) $file[0] = "";
@@ -160,7 +160,7 @@ function do_entrycontent( $when, $day )
         array_push( $entrylines, $line );
     }
 
-    array_push( $entrylines, "<!-- end of entry $when/$day -->\n" );
+    array_push( $entrylines, "" );
 
     return( $entrylines );
 }
