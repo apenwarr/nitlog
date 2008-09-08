@@ -98,7 +98,7 @@ function make_datelist()
     // read the list of days with entries in that month.
     $dh = opendir( $m );
     while( ( $file = readdir( $dh ) ) !== false ) {
-        if( filetype( "$m/$file" ) == 'file' && strlen( $file ) == 2 
+        if( filetype( "$m/$file" ) != 'dir' && strlen( $file ) == 2 
           && "$m$file" <= $today ) {
             $datelist[ count( $datelist ) ] = $file;
         }
