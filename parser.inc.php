@@ -3,7 +3,8 @@
 function match_entrytitle( $line1 )
 {
     preg_match_all( "{^\s*<b>(.*)</b>\s*$}m", $line1, $matches );
-    return join('; ', $matches[1]);
+//    return join('; ', $matches[1]);
+    return $matches[1][0];
 }
 
 function get_entrytitle( $when, $day )
