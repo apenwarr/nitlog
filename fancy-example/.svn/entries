@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="9016"
+   name=""
+   committed-date="2005-01-20T23:04:12.000000Z"
+   url="svn+ssh://apenwarr@svn.alumnit.ca/home/svn/public/trunk/nitlog/fancy-example"
+   last-author="dcoombs"
+   kind="dir"
+   uuid="6619c942-59fa-0310-bf43-a07aaa81d9ac"
+   revision="11552"/>
+<entry
+   committed-rev="8092"
+   name="nitlog.png"
+   text-time="2007-03-09T01:49:13.000000Z"
+   committed-date="2004-11-17T16:53:56.000000Z"
+   checksum="e5f9fd2056a5ae663cbd809640b9ef6b"
+   last-author="dcoombs"
+   kind="file"
+   prop-time="2007-03-09T01:49:13.000000Z"/>
+<entry
+   committed-rev="9016"
+   name="dcoombs.inc.html"
+   text-time="2007-03-09T01:49:13.000000Z"
+   committed-date="2005-01-20T23:04:12.000000Z"
+   checksum="ea6818b566b5432e53d660d43b845fd5"
+   last-author="dcoombs"
+   kind="file"
+   prop-time="2007-03-09T01:49:13.000000Z"/>
+<entry
+   committed-rev="7948"
+   name="config.inc.php"
+   text-time="2007-03-09T01:49:13.000000Z"
+   committed-date="2004-11-05T17:28:21.000000Z"
+   checksum="0b24200db74d9dd519f5cb263f108533"
+   last-author="dcoombs"
+   kind="file"
+   prop-time="2007-03-09T01:49:13.000000Z"/>
+<entry
+   name="200411"
+   kind="dir"/>
+<entry
+   committed-rev="4336"
+   name="nitilogo.gif"
+   text-time="2007-03-09T01:49:13.000000Z"
+   committed-date="2004-04-14T16:01:47.000000Z"
+   checksum="94045524ec536b499560a417f5334885"
+   last-author="dcoombs"
+   kind="file"
+   prop-time="2007-03-09T01:49:13.000000Z"/>
+<entry
+   committed-rev="7992"
+   name="face.jpg"
+   text-time="2007-03-09T01:49:13.000000Z"
+   committed-date="2004-11-10T18:06:58.000000Z"
+   checksum="a121ccb5b69619efc9ca1019861545e8"
+   last-author="dcoombs"
+   kind="file"
+   prop-time="2007-03-09T01:49:13.000000Z"/>
+</wc-entries>

@@ -1,0 +1,251 @@
+                                                                Nov 10, 2004
+                                                Dave Coombs <dcoombs@nit.ca>
+
+
+--------
+Preamble
+--------
+
+NITLog is a weblog system written in PHP, designed to be relatively simple
+and to stay out of your way.  Or, more accurately, to stay out of *my* way.
+
+You write entries in text files, you can mark them up with whatever HTML
+you want, and there are a few additional useful formatting commands for
+including images and bulleted lists.  The layout of your page is completely
+customizable.  All of this is described below.
+
+Entries are organized and viewed by month.  The current (or most recent)
+month is displayed upside-down, with the newest entries at the top.  All
+older months are displayed the other way, chronologically.
+
+If NITLog doesn't do something you want it to do, it could be because I
+never thought of it or was too lazy.  Please feel free to let me know what
+you'd like to see.  Better yet, please feel doubly free to do some hacking
+yourself and send me a patch.
+
+NITLog is freely available under the GPL.  Please see the enclosed LICENSE
+file.
+
+
+---------------------
+Configuration Options
+---------------------
+
+The following options in config.ini.php are available:
+
+    required:
+        $name        -- the title of your site
+        $layout      -- the HTML layout file to crunch and fill with content
+        $topdir      -- the directory we're installed in (eg: "nitlog")
+
+    optional:
+        $username    -- your username, optional
+        $email       -- email address for site administrator, optional
+        $logfile     -- log page requests to this file, optional
+        $rsslink     -- true if you want to offer an RSS feed
+        $absoluteurl -- used for translating relative paths in RSS feed
+
+
+----------------
+Directory Layout
+----------------
+
+Install NITLog as described in the INSTALL file, beginning, if you like,
+with the included example.
+
+Under the 'nitlog' directory, make a directory for each month that has
+entries.  November 2004 would be called '200411'.
+
+Inside a month directory, write your entries in files with two-digit
+numeric names corresponding to the day of the month.
+
+
+----------------
+Entry Formatting
+----------------
+
+Any HTML is allowed, and will be passed through unharmed.  Additionally,
+NITLog automatically performs the following actions on your text:
+
+    - A blank line is replaced with <p>, so you don't need to explicitly
+      separate paragraphs with HTML yourself.
+
+    - Lines beginning with a minus sign and a space ("- ") will be turned
+      into a bulleted list.  You can put blank lines between consecutive
+      bulleted lines.  NITLog is not yet smart enough to deal with indented
+      lists, so don't even try.
+
+    - Lines of the form:
+
+            image 1234 This is an image.
+
+      will insert an image into your text.  NITLog expects to find two
+      files, "img_1234_sm.jpg" and "img_1234_lg.jpg", corresponding to
+      small and large versions of the image, in the same directory as the
+      article text.  The small version will be displayed inline, centred,
+      with the given caption underneath.  The image is itself a clickable
+      link to the larger version.
+
+    - Lines of the form:
+
+            pngimage 1234 This is an image.
+
+      work just like the above, but look for png files instead of jpg.
+
+    - Lines of the form:
+
+            thumb 1234 This is an image.
+
+      will insert a thumbnail image into your text.  NITLog expects to find
+      a thumbnail image named "img_1234_th.jpg" in the same directory as
+      the article text.
+
+      Clicking the thumbnail will invoke img.php, and allow the user to see
+      the caption and view the image in different sizes.  If you have
+      "img_1234_sm.jpg", "img_1234_lg.jpg", and "img_1234.jpg", they will
+      be treated as small, large, and huge, respectively.
+
+      Don't put a blank line between consecutive "thumb" lines.
+
+
+----------------
+A Note About RSS
+----------------
+
+rss.php will parse the same entries as index.php, and it will give you an
+XML RSS feed in return.
+
+It is important to note that when you are linking to other parts of your
+nitlog, you want to do it with a relative path involving . or .. or with an
+absolute URL.  The escape() function in rss.php translates . and .. into an
+absolute URL.  This is necessary because when someone reads your RSS feed
+on another site, the relative paths won't otherwise work.  Thus, linking to
+yourself:
+
+    href="http://foo.com/nitlog/?m=200411#05"       OK
+    href="../nitlog/?m=200411#05"                   OK
+    href="./?m=200411#05"                           OK
+
+    href="?m=200411#05"                             BAD BAD BAD
+    href="#05"                                      BAD BAD BAD
+
+NITLog is not smart enough to translate the last two into an absolute URL.
+Don't do it.
+
+
+-----------
+Page Layout
+-----------
+
+You will want to design your own layout template for NITLog.  This is done
+as a regular HTML file, with certain extra markup tags that are parsed by
+NITLog and replaced with content.
+
+See example/layout.inc.html for a simple example, and
+fancy-example/dcoombs.inc.html for a fancier one.
+
+
+The following globally scoped tags are replaced by NITLog as appropriate:
+
+    <## title ##>
+        the title of your site, as defined by $title in config.inc.php
+
+    <## email ##>
+        the site administrator's email address, as defined by $email in
+        config.inc.php
+
+    <## prevmonth ##>
+    <## nextmonth ##>
+    <## thismonth ##>
+        a numeric representation of the previous, next, and current months,
+        for linking purposes.  For example, November 2004 is "200411".  Link
+        to this month with "http://whatever/nitlog/?m=200411".
+
+    <## prev ##>
+    <## next ##>
+    <## this ##>
+        a textual representation of the previous, next, and current months
+
+    <## prevabbr ##>
+    <## nextabbr ##>
+        an abbreviated textual representation of the previous and next months
+
+    <## rsslink ##>
+        a link to rss.php, constructed from $absoluteurl and $topdir in
+        config.inc.php
+
+
+The following control structures must be on separate lines, and behave as
+described:
+
+    ### ifemail
+        stuff passed through only if $email is defined
+    ### endif
+
+
+    ### ifprev
+        stuff passed through only if an earlier month exists
+    ### endif
+
+
+    ### ifnext
+        stuff passed through only if a future month exists
+    ### endif
+
+
+    ### ifprevnext
+        stuff passed through only if an earlier *OR* a future month exists
+    ### endif
+
+
+    ### ifrss
+        stuff passed through only if $rss is true
+    ### endif
+
+
+    ### loopentries
+        stuff that is repeatedly passed through once for each entry
+        in the month
+    ### endloopentries
+
+
+The following tags are available only inside the "loopentries" structure,
+and correspond to information about the current entry in the iterator:
+
+    <## entrytitle ##>
+        the title of the entry, which is currently always the publication
+        date
+
+    <## entrytime ##>
+        the date and time the entry was published, determined by the mtime
+        of the entry file
+
+    <## entrylink ##>
+        a relative link to the current entry.  requires "entryanchor"
+
+    <## entryanchor ##>
+        a name for an anchor for the current entry, so that "entrylink"
+        will actually work
+
+
+The following control structures are available only inside the
+"loopentries" structure, must be on separate lines, and behave as
+described:
+
+    ### ifentrytitle
+        stuff passed through only if the current entry has a title.  If the
+        two-digit date is "00", this is false.
+    ### endif
+
+    
+    ### entrycontent
+        this line is replaced by the text of the entry
+
+
+---------
+Postamble
+---------
+
+Please join me in banning the word "blog" from the English language.  And
+from all other languages, while we're at it.  Thank you for your support.
+

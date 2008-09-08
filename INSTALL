@@ -1,0 +1,49 @@
+                                                                Nov 10, 2004
+                                                Dave Coombs <dcoombs@nit.ca>
+
+-----------------
+Installing NITLog
+-----------------
+
+You'll need a PHP4-capable web server and a modicum of patience.
+The quickest way to get going looks like this:
+
+    - procure a web-accessible directory, which we'll call DIR.
+
+    - make a subdirectory DIR/nitlog.
+
+    - if you want, put an index.html in DIR that redirects to DIR/nitlog.
+
+    - copy index.php, defs.inc.php, parser.inc.php, and optionally rss.php
+      and img.php, to DIR/nitlog.
+
+    - copy (cp -a) the contents of 'example' to DIR/nitlog.
+
+    - make appropriate changes to DIR/nitlog/config.inc.php.
+
+You should now be able to point your browser at
+http://www.domain.com/~username/nitlog/ and see the included sample entry.
+
+
+-------------
+Fancier Stuff
+-------------
+
+I like having multiple areas of my site handled by NITLog in different
+subdirectories, sharing various facets of their configuration.  For
+example, in addition to the 'nitlog' directory, I have a 'home' directory,
+a directory for various thumbnail picture galleries, etc, each of which has
+NITLog installed in them.  You can move any common files, such as your
+layout.inc.html file, up a level (to DIR) and change the appropriate
+setting in config.inc.php to point there.
+
+Feel free to try the stuff in 'fancy-example', which is approximately what
+I use for my own site.  See dcoombs.inc.html for the layout.
+
+
+------------
+How do I...?
+------------
+
+Read the README.  That's how.
+

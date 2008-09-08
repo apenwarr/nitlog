@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7948"
+   name=""
+   committed-date="2004-11-05T17:28:21.000000Z"
+   url="svn+ssh://apenwarr@svn.alumnit.ca/home/svn/public/trunk/nitlog/example"
+   last-author="dcoombs"
+   kind="dir"
+   uuid="6619c942-59fa-0310-bf43-a07aaa81d9ac"
+   revision="11552"/>
+<entry
+   committed-rev="7948"
+   name="config.inc.php"
+   text-time="2007-03-09T01:49:13.000000Z"
+   committed-date="2004-11-05T17:28:21.000000Z"
+   checksum="d8fbc4d4f3bf4dc0baa1e81a195987c3"
+   last-author="dcoombs"
+   kind="file"
+   prop-time="2007-03-09T01:49:13.000000Z"/>
+<entry
+   name="200411"
+   kind="dir"/>
+<entry
+   committed-rev="11553"
+   name="layout.inc.html"
+   text-time="2007-03-09T01:54:07.000000Z"
+   committed-date="2007-03-09T01:54:53.596837Z"
+   checksum="8e332e850183762dd54dafc1ef476ab0"
+   last-author="apenwarr"
+   kind="file"
+   prop-time="2007-03-09T01:49:13.000000Z"
+   revision="11553"/>
+</wc-entries>
