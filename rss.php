@@ -40,7 +40,8 @@ function do_entry( $file, $yearmonth, $day )
     $title = sprintf( "%04d-%02d-%02d", $year, $monthnum, $day );
     $intitle = get_entrytitle( $yearmonth, $day );
     $mtime = filemtime( $file );
-    if ( $intitle ) $title .= ": " . $intitle;
+    if ( $intitle )
+    	$title = $intitle;
     $s .=  "    <item>\n" .
            "      <title>$title</title>\n" .
            "      <pubDate>" . date( "r", $mtime ) . "</pubDate>\n" .
