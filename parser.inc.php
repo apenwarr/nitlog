@@ -20,7 +20,7 @@ function do_entrycontent( $when, $day )
 
     $inlist = false;
 
-    $entrylines = array( "" );
+    $entrylines = array();
 
     $file = file( "$when/$day" );
     // if ( match_entrytitle( $file[0] ) ) $file[0] = "";

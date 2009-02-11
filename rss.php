@@ -50,6 +50,8 @@ function do_entry( $file, $yearmonth, $day )
            "      <description>";
 
     $entrylines = do_entrycontent( $yearmonth, $day );
+    if (preg_match('@^\s*<b>.*</b>\s*$@', $entrylines[0]))
+	$entrylines[0] = "";
     foreach( $entrylines as $eline ) {
         $s .= escape( $eline );
     }
