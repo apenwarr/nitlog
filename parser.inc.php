@@ -26,7 +26,9 @@ function do_entrycontent( $when, $day )
     // if ( match_entrytitle( $file[0] ) ) $file[0] = "";
     
     foreach( $file as $line ) {
-        if( substr( $line, 0, 6 ) === 'image ' ) {
+	if( substr( $line, 0, 2 ) === "::" ) {
+	    continue; // skip over tag lines
+        } elseif( substr( $line, 0, 6 ) === 'image ' ) {
             $num = substr( $line, 6, 4 );
             $caption = substr( $line, 10 );
             $httpdir = "../$topdir/$when";
