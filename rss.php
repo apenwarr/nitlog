@@ -25,6 +25,26 @@ function escape( $string )
             ereg_replace( '\.\.\/', "$absoluteurl/", $string ) ) ) ) ) ) );
 }
 
+function tags_match( $file )
+{
+    if( $_GET["tags"] == "" ) return true;
+    
+    $want_tags = split( "[ \t\r\n,]", $_GET["tags"] );
+    
+    $lines = file( $file );
+    foreach( $lines as $line ) {
+	if( substr( $line, 0, 2 ) == "::" ) {
+	    $tags = split( "[ \t\r\n,]", substr( $line, 2 ) );
+	    var_dump( $tags );
+	    foreach( $tags as $tag ) {
+		if( in_array( $tag, $want_tags ) ) return true;
+	    }
+	}
+    }
+    
+    return false;
+}
+
 function do_entry( $file, $yearmonth, $day )
 {
     global $months;
@@ -37,6 +57,10 @@ function do_entry( $file, $yearmonth, $day )
     $monthnum = substr( $yearmonth, 4, 2 );
     $year = substr( $yearmonth, 0, 4 );
     // $title = "$months[$monthnum] $day, $year";
+    
+    if( !tags_match( $file ) )
+        return "";
+    
     $title = sprintf( "%04d-%02d-%02d", $year, $monthnum, $day );
     $intitle = get_entrytitle( $yearmonth, $day );
     $mtime = filemtime( $file );

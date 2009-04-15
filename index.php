@@ -172,7 +172,7 @@ function read_layout()
                  . '&nbsp;' . substr( $nextmonth, 0, 4 );
     }
     $thismonth = $m;
-    $this = month( substr( $m, 4, 2 ) )
+    $thism = month( substr( $m, 4, 2 ) )
                  . '&nbsp;' . substr( $m, 0, 4 );
 
     $rss = "$absoluteurl/$topdir/rss.php";
@@ -201,7 +201,7 @@ function read_layout()
                     preg_replace( '/(?im)<## next ##>/', $next,
                     preg_replace( '/(?im)<## prevabbr ##>/', $prevabbr,
                     preg_replace( '/(?im)<## nextabbr ##>/', $nextabbr,
-                    preg_replace( '/(?im)<## this ##>/', $this,
+                    preg_replace( '/(?im)<## this ##>/', $thism,
                     preg_replace( '/(?im)<## rsslink ##>/', $rss,
                     preg_replace( '/(?im)<## include-header ##>/',
                       join('', $headerfile),
