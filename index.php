@@ -1,13 +1,11 @@
-<!--
+<?php
+/*
  * Worldvisions Weaver Software:
  *   Copyright (C) 1997-2005 Net Integration Technologies, Inc.
  *
  * Dave's cheesy webloggy thing
  *
  */
--->
-<?php
-
 include( 'config.inc.php' );
 include( 'defs.inc.php' );
 include( 'parser.inc.php' );
